@@ -1,0 +1,9 @@
+.footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.main-container {
+    margin-top: 20px;
+}
