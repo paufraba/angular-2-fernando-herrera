@@ -1,4 +1,4 @@
-<h1 class="animated fadeIn fast">Heroes <small>de Marvel y DC</small></h1>
+<h1 class="animated fadeIn fast">Heroes encontados...</h1>
 <hr>
 
 <div class="card-columns animated fadeIn">
@@ -9,11 +9,11 @@
             <p class="card-text">{{ heroe.bio }}</p>
             <p class="card-text"><small class="text-muted">{{ heroe.aparicion }}</small></p>
 
-            <button type="button" class="btn btn-outline-primary btn-block" (click)=verHeroe(i)>
+            <!-- <button type="button" class="btn btn-outline-primary btn-block" (click)=verHeroe(i)>
                 Ver más...
-            </button>
+            </button> -->
 
-            <!-- <a [routerLink]="['/heroe', i]" class="btn btn-outline-primary btn-block">Ver más link...</a> -->
+            <a [routerLink]="['/heroe', i]" class="btn btn-outline-primary btn-block">Ver más...</a>
         </div>
     </div>
 
