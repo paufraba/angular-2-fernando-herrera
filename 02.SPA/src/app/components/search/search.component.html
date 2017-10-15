@@ -1,8 +1,17 @@
 <h1 class="animated fadeIn fast">Heroes encontados...</h1>
 <hr>
 
+
+<div class="row animated fadeIn fast" *ngIf="heroes.length == 0">
+    <div class="col-md-12">
+        <div class="alert alert-info" role="alert">
+            No existen heroes con el texto: {{ texto }}
+        </div>
+    </div>
+</div>
+
 <div class="card-columns animated fadeIn">
-    <div class="card" *ngFor="let heroe of heroes; let i = index">
+    <div class="card" *ngFor="let heroe of heroes">
         <img class="card-img-top" [src]="heroe.img" [alt]="heroe.nombre">
         <div class="card-body">
             <h4 class="card-title">{{ heroe.nombre }}</h4>
@@ -13,7 +22,7 @@
                 Ver más...
             </button> -->
 
-            <a [routerLink]="['/heroe', i]" class="btn btn-outline-primary btn-block">Ver más...</a>
+            <a [routerLink]="['/heroe', heroe.id]" class="btn btn-outline-primary btn-block">Ver más...</a>
         </div>
     </div>
 
