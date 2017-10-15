@@ -1,0 +1,115 @@
+<div class="container">
+    <h1>Pipes</h1>
+    <br>
+    <table class="table table-hover">
+        <thead class="thead-default">
+            <tr>
+                <th>Variable</th>
+                <th>Pipe</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ nombre }}</td>
+                <td>uppercase</td>
+                <td>{{ nombre | uppercase }}</td>
+            </tr>
+            <tr>
+                <td>{{ nombre }}</td>
+                <td>lowercase</td>
+                <td>{{ nombre | lowercase }}</td>
+            </tr>
+            <tr>
+                <td>{{ nombre }}</td>
+                <td>slice:1</td>
+                <td>{{ nombre | slice:1 }}</td>
+            </tr>
+            <tr>
+                <td>{{ nombre }}</td>
+                <td>slice:0:1</td>
+                <td>{{ nombre | slice:0:1 }}</td>
+            </tr>
+            <tr>
+                <td>{{ array }}</td>
+                <td>slice:1:5</td>
+                <td>{{ array | slice:1:5 }}</td>
+            </tr>
+            <tr>
+                <td>{{ pi }}</td>
+                <td>number:'2.0-4'</td>
+                <td>{{ pi | number:'2.0-4' }}</td>
+            </tr>
+            <tr>
+                <td>{{ a }}</td>
+                <td>percent</td>
+                <td>{{ a | percent }}</td>
+            </tr>
+            <tr>
+                <td>{{ a }}</td>
+                <td>percent:'2.2-2'</td>
+                <td>{{ a | percent:'2.2-2' }}</td>
+            </tr>
+            <tr>
+                <td>{{ salario }}</td>
+                <td>currency</td>
+                <td>{{ salario | currency }}</td>
+            </tr>
+            <tr>
+                <td>{{ salario }}</td>
+                <td>currency:'EUR'</td>
+                <td>{{ salario | currency:'EUR' }}</td>
+            </tr>
+            <tr>
+                <td>{{ salario }}</td>
+                <td>currency:'EUR':true</td>
+                <td>{{ salario | currency:'EUR':true }}</td>
+            </tr>
+            <tr>
+                <td>{{ valor }}</td>
+                <td>async</td>
+                <td>{{ valor | async }}</td>
+            </tr>
+            <tr>
+                <td>{{ fecha }}</td>
+                <td>date</td>
+                <td>{{ fecha | date }}</td>
+            </tr>
+            <tr>
+                <td>{{ fecha }}</td>
+                <td>date:'shortDate'</td>
+                <td>{{ fecha | date:'shortDate' }}</td>
+            </tr>
+            <tr>
+                <td>{{ fecha }}</td>
+                <td>date:'medium'</td>
+                <td>{{ fecha | date:'medium' }}</td>
+            </tr>
+            <tr>
+                <td>{{ nombreCompleto }}</td>
+                <td>caps</td>
+                <td>{{ nombreCompleto | caps }}</td>
+            </tr>
+            <tr>
+                <td>{{ nombreCompleto }}</td>
+                <td>caps:false</td>
+                <td>{{ nombreCompleto | caps:false }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <h3>Slice</h3>
+    <ul>
+        <li *ngFor="let item of array | slice:5:20"> {{ item }}</li>
+    </ul>
+
+    <h3>JSON</h3>
+    <pre>{{ heroe | json }}</pre>
+
+    <h3>Youtube</h3>
+    <iframe width="420" height="345" [src]="video | domseguro:'https://www.youtube.com/embed/'">
+    </iframe>
+
+
+</div>
