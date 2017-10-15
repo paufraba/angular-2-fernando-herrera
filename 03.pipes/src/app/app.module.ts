@@ -5,12 +5,14 @@ import { LOCALE_ID } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CapsPipe } from '..\\app\\pipes\\caps.pipe';
 import { DomseguroPipe } from './pipes/domseguro.pipe';
+import { ContrasenaPipe } from './pipes/contrasena.pipe';
 
 @NgModule({
     declarations: [
         AppComponent,
         CapsPipe,
-        DomseguroPipe
+        DomseguroPipe,
+        ContrasenaPipe
     ],
     imports: [
         BrowserModule
