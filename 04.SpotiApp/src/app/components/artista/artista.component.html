@@ -1,0 +1,33 @@
+<div class="container main-container animated fadein fast" *ngIf="artista">
+    <div class="row">
+        <div class="col-md-3 text-center" >
+            <img [src]="artista.images | sinfoto:2" class="img-circle" [alt]="artista.name">
+        </div>
+        <div class="col-md-9">
+            <h1>{{ artista.name }} <small>{{ artista.popularity }}</small></h1>
+            <hr>
+            <a class="btn btn-success" [href]="artista.external_urls?.spotify" target="_blank">Abrir en Spotify</a>
+            <button type="button" class="btn btn-outline-danger" [routerLink]="['/search']">Volver</button>
+        </div>
+    </div>
+</div>
+
+<div class="container animated fadein top-30" *ngIf="topTracks">
+    <h2>Top tracks <small>{{ artista.name }}</small></h2>
+    <div class="container">
+        <ul class="list-unstyled">
+            <li class="media" *ngFor="let track of topTracks">
+                <!-- <img class="mr-3" [src]="track.album?.images | sinfoto:2" [alt]="track.name"> -->
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1">{{ track.name }} <small>{{ track.popularity }}%</small></h5>
+                    <!-- <audio controls>
+                        <source src="{{ track.preview_url }}">
+                            Navegador muy viejo!!
+                    </audio> -->
+                    <iframe [src]="track.uri | domseguro:'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+</div>
