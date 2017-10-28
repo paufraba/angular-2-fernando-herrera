@@ -1,0 +1,31 @@
+<ion-header >
+    <ion-navbar color="primary">
+        <ion-title>Lista de pendientes</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card *ngFor="let lista of _listaTareasService.listas">
+        <ion-item>
+            boton!
+        </ion-item>
+        <h2>{{ lista.nombre }}</h2>
+        <ion-list>
+            <ion-item>
+                <ion-icon name="arrow-dropright-circle"></ion-icon>
+                Test
+            </ion-item>
+            <ion-item>
+                <ion-icon name="arrow-dropright-circle"></ion-icon>
+                Test
+            </ion-item>
+        </ion-list>
+    </ion-card>
+
+    <ion-fab right bottom>
+        <button ion-fab color="primary" (click)="agregarTarea()">
+            <ion-icon name="add"></ion-icon>
+        </button>
+
+    </ion-fab>
+</ion-content>
