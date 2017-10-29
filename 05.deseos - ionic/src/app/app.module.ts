@@ -11,10 +11,12 @@ import { ListaTareasService } from './services/lista-tareas.service';
 
 //Pipes
 import { PlaceHolderPipe } from './pipes/placeholder.pipe';
+import { PendientesPipe } from './pipes/pendientes.pipes';
 
 import { PendientesComponent } from '../pages/pendientes/pendientes.component';
 import { TerminadosComponent } from '../pages/terminados/terminados.component';
 import { AgregarComponent } from '../pages/agregar/agregar.component';
+import { DetalleComponent } from '../pages/detalle/detalle.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +25,9 @@ import { AgregarComponent } from '../pages/agregar/agregar.component';
         PendientesComponent,
         TerminadosComponent,
         AgregarComponent,
-        PlaceHolderPipe
+        PlaceHolderPipe,
+        DetalleComponent,
+        PendientesPipe
     ],
     imports: [
         BrowserModule,
@@ -35,7 +39,8 @@ import { AgregarComponent } from '../pages/agregar/agregar.component';
         TabsPage,
         PendientesComponent,
         TerminadosComponent,
-        AgregarComponent
+        AgregarComponent,
+        DetalleComponent
     ],
     providers: [
         StatusBar,

@@ -27,7 +27,7 @@
 
     <!-- Items -->
 
-    <ion-card>
+    <ion-card *ngIf="items.length > 0">
         <ion-card-header>
             <h3>Items añadidos</h3>
         </ion-card-header>
@@ -36,20 +36,16 @@
             <ion-list>
                 <ion-item *ngFor="let item of items; let i = index">
                     <button ion-button color="dark" clear>{{ item.nombre }}</button>
-                    <button ion-button outline icon-right color="danger">
+                    <button (click)="borrarItem(i)" ion-button outline icon-right color="danger">
                         Borrar ({{ i }})
                         <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
                     </button>
-
                 </ion-item>
-
-
             </ion-list>
         </ion-card-content>
-
     </ion-card>
 
-    <button ion-button icon-left class="button-block">
+    <button (click)="guardarLista()" ion-button icon-left class="button-block">
         <ion-icon ios="ios-checkbox-outline" md="md-checkbox-outline"> </ion-icon>
         Guardar lista
     </button>
