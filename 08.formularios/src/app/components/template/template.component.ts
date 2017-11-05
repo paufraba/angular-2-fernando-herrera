@@ -2,27 +2,47 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
-    selector: 'app-template',
-    templateUrl: './template.component.html',
-    styles: []
+  selector: 'app-template',
+  templateUrl: './template.component.html',
+  // styles: [`
+  //     .ng-invalid.ng-touched:not(form) {
+  //         border: 1px solid red;
+  //     }
+  // `
+  // ]
 })
 export class TemplateComponent implements OnInit {
 
-    usuario:Object = {
-        nombre: "Pau",
-        apellido: "Franco",
-        correo: ""
-    }
-    constructor() { }
+  usuario: Object = {
+    nombre: null,
+    apellido: null,
+    correo: null,
+    pais: "",
+    sexo: "Hombre",
+    acepta: null
+  }
 
-    ngOnInit() {
-    }
+  paises = [{
+    codigo: "ES",
+    nombre: "España"
+  },
+  {
+    codigo: "CAT",
+    nombre: "Catalunya"
+  }]
 
-    guardar(form: NgForm) {
-        console.log('ngForm: ', form);
-        console.log('Valor: ', form.value);
+  sexos:string[] = ["Hombre", "Mujer", "Indefinido"]
 
-        console.log("Usuario", this.usuario);
-    }
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  guardar(form: NgForm) {
+    console.log('ngForm: ', form);
+    console.log('Valor: ', form.value);
+
+    console.log("Usuario", this.usuario);
+  }
 
 }
