@@ -1,3 +1,129 @@
-<p>
-  data works!
-</p>
+<h4>Formularios <small>data</small></h4>
+<hr>
+<form [formGroup]="form" (ngSubmit)="guardarCambios()" novalidate="novalidate">
+    <div formGroupName="nombrecompleto">
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col-8">
+
+                <input class="form-control"
+                type="text"
+                placeholder="Nombre"
+                formControlName="nombre"
+                [ngClass]="{'is-invalid':form.get('nombrecompleto.nombre').invalid, 'is-valid':form.get('nombrecompleto.nombre').valid}"
+                >
+                <div class="invalid-feedback">
+                    <div *ngIf="form.get('nombrecompleto.nombre').errors?.required">
+                        El campo es obligatorio
+                    </div>
+                    <div *ngIf="form.get('nombrecompleto.nombre').errors?.minlength">
+                        La longitud mínima es de {{form.get('nombrecompleto.nombre').errors.minlength.requiredLength}} carácteres
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Apellido</label>
+            <div class="col-8">
+
+                <input class="form-control"
+                type="text"
+                placeholder="Apellido"
+                formControlName="apellido"
+                [ngClass]="{'is-invalid':form.get('nombrecompleto.apellido').invalid, 'is-valid':form.get('nombrecompleto.apellido').valid}">
+                <div class="invalid-feedback">
+                    <div *ngIf="form.get('nombrecompleto.apellido').errors?.required">
+                        El campo es obligatorio
+                    </div>
+                    <div *ngIf="form.get('nombrecompleto.apellido').errors?.noherrera">
+                        No está permitido el uso del apellido herrera
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Correo</label>
+        <div class="col-md-8">
+
+            <input class="form-control"
+            type="email"
+            placeholder="Correo electrónico"
+            formControlName="correo">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">User name</label>
+        <div class="col-md-8">
+
+            <input class="form-control"
+            type="text"
+            placeholder="User name"
+            formControlName="username"
+            [ngClass]="{'is-invalid':form.get('username').invalid, 'is-valid':form.get('username').valid}">
+            <div class="invalid-feedback">
+                <div *ngIf="form.get('username').errors?.existe">
+                    El nombre de usuario ya existe
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Password</label>
+        <div class="col-md-8">
+
+            <input class="form-control"
+            type="password"
+            placeholder="Password"
+            formControlName="password1">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Repetir password</label>
+        <div class="col-md-8">
+
+            <input class="form-control"
+            type="password"
+            placeholder="Repetir password"
+            formControlName="password2">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Pasatiempos</label>
+        <div class="col-md-8" formArrayName="pasatiempos">
+            <input *ngFor="let pasa of form.controls['pasatiempos'].controls; let i = index"
+            type="text" class="form-control"
+            [formControlName]="i">
+
+        </div>
+
+        <button
+        type="button" name="button"
+        class="btn btn-primary"
+        (click)="agregarPasatiempo()">Nuevo
+    </button>
+</div>
+
+
+
+<div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+        <button type="submit" class="btn btn-outline-primary">
+            Guardar
+        </button>
+    </div>
+</div>
+
+{{form.valid}}
+<br>
+{{form.status}}
+
+</form>
