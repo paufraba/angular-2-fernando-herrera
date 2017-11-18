@@ -6,35 +6,42 @@
 
 <div class="row animated fadeIn fast">
     <div class="col-md-12">
-        <form>
+        <form (ngSubmit)="guardar()" #form="ngForm">
+
             <div class="form-group">
                 <label>Nombre</label>
-                <input type="text" name=""
+                <input [(ngModel)]="heroe.nombre"
+                type="text" name="nombre"
                 class="form-control"
                 placeholder="Nombre del héroe"
                 required>
             </div>
             <div class="form-group">
                 <label>Casa</label>
-                <select class="form-control" name="">
+                <select [(ngModel)]="heroe.casa"
+                    class="form-control" name="casa">
                     <option value="Marvel">Marvel</option>
                     <option value="DC">DC</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Bio</label>
-                <textarea type="text" name=""
+                <textarea [(ngModel)]="heroe.bio"
+                type="text" name="bio"
                 class="form-control"
-                placeholder="Bio del héroe"
-                required></textarea>
+                placeholder="Bio del héroe"></textarea>
             </div>
 
             <div class="form-group">
-                <button type="submit" name="button" class="btn btn-outline-primary">Guardar</button>
-
+                <button [disabled]="form.invalid"
+                type="submit" class="btn btn-outline-primary">
+                    Guardar
+                </button>
             </div>
 
         </form>
+
+        {{ heroe | json }}
 
     </div>
 
