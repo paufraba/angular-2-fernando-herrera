@@ -1,0 +1,41 @@
+<h3>Héroe <small>nombre...</small></h3>
+<button type="button" [routerLink]="['/heroes']" class="btn btn-outline-danger">
+    Volver
+</button>
+<hr>
+
+<div class="row animated fadeIn fast">
+    <div class="col-md-12">
+        <form>
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" name=""
+                class="form-control"
+                placeholder="Nombre del héroe"
+                required>
+            </div>
+            <div class="form-group">
+                <label>Casa</label>
+                <select class="form-control" name="">
+                    <option value="Marvel">Marvel</option>
+                    <option value="DC">DC</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Bio</label>
+                <textarea type="text" name=""
+                class="form-control"
+                placeholder="Bio del héroe"
+                required></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" name="button" class="btn btn-outline-primary">Guardar</button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
