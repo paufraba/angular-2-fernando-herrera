@@ -4,7 +4,10 @@
 <div class="row">
     <div class="col-md-12 text-right">
         <button [routerLink]="['/heroe', 'nuevo']"
-        type="button" name="button" class="btn btn-outline-primary">Nuevo</button>
+        type="button" name="button" class="btn btn-outline-primary">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Nuevo
+        </button>
     </div>
 </div>
 <br>
@@ -22,26 +25,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
+                    <tr *ngFor="let k of heroes | keys; let i = index">
+                        <th scope="row">{{ i }}</th>
+                        <td>{{ heroes[k].nombre }}</td>
+                        <td>{{ heroes[k].casa }}</td>
+                        <td>
+                            <a [routerLink]="['/heroe', k]" class="text-primary">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+
+                            <a (click)="borrarHeroe(k)" class="text-danger" >
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
+
+            <div *ngIf="(heroes | keys).length === 0 && !loading"
+            class="alert alert-info" role="alert">
+                 <strong>No</strong> hay heroes
+            </div>
+
+            <div *ngIf="loading"
+            class="alert alert-warning" role="alert">
+                <strong>Cargando...</strong> Por vaor, espere.
+            </div>
 
         </div>
 

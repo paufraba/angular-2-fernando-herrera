@@ -1,6 +1,11 @@
-<h3>Héroe <small>nombre...</small></h3>
+<h3>Héroe <small>{{ heroe.nombre }}</small></h3>
 <button type="button" [routerLink]="['/heroes']" class="btn btn-outline-danger">
+    <i class="fa fa-arrow-left" aria-hidden="true"></i>
     Volver
+</button>
+<button type="button" (click)="nuevoHeroe(form)" class="btn btn-outline-primary">
+    <i class="fa fa-user" aria-hidden="true"></i>
+    Nuevo
 </button>
 <hr>
 
@@ -35,13 +40,14 @@
             <div class="form-group">
                 <button [disabled]="form.invalid"
                 type="submit" class="btn btn-outline-primary">
+                    <i class="fa fa-floppy-o"></i>
                     Guardar
                 </button>
             </div>
 
         </form>
 
-        {{ heroe | json }}
+        <!-- {{ heroe | json }} -->
 
     </div>
 
