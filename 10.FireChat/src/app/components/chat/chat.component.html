@@ -2,17 +2,26 @@
 <hr>
 
 <div class="app-mensajes" id="app-mensajes">
-    <div class="text-right">
-        <span class="badge badge-primary">Pau</span>
-        <p>Hola!!</p>
+    <div [ngClass]="{ 'text-right': _cs.usuario.uid == chat.uid}"
+    *ngFor="let chat of _cs.chats">
+        <span class="badge"
+        [ngClass]="{ 'badge-primary': _cs.usuario.uid == chat.uid,
+        'badge-info': _cs.usuario.uid != chat.uid}">
+            {{ chat.nombre }}
+        </span>
+        <p>{{ chat.mensaje }}</p>
     </div>
-    <div class="">
-        <span class="badge badge-info">Pep</span>
-        <p>Com va?</p>
-    </div>
+<!-- <div class="text-right">
+<span class="badge badge-primary">Pau</span>
+<p>Hola!!</p>
+</div>
+<div class="">
+<span class="badge badge-info">Pep</span>
+<p>Com va?</p>
+</div> -->
 </div>
 
 <input type="text" name="mensaje" [(ngModel)]="mensaje"
-    (keyup.enter)="enviar_mensaje()"
-    placeholder="Mensaje a enviar"
-    class="form-control">
+(keyup.enter)="enviar_mensaje()"
+placeholder="Mensaje a enviar"
+class="form-control">
