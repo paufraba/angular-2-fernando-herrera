@@ -1,0 +1,57 @@
+<div class="row" *ngIf="pelicula">
+    <div class="col-6">
+        <img class="img-fluid rounded" [src]="_pelis.img_base_url + 'w500/' + pelicula.poster_path">
+    </div>
+    <div class="col-6">
+        <h1>{{pelicula.title}}</h1>
+        {{pelicula.overview}}
+        <h2 class="mt-2">Ficha</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                    Género
+                </div>
+                <div class="col-9">
+                    <span class="badge badge-pill badge-primary" *ngFor="let genero of pelicula.genres">{{genero.name}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    URL
+                </div>
+                <div class="col">
+                    <a href="{{pelicula.homepage}}" target="blank">{{pelicula.homepage}}</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    Título original
+                </div>
+                <div class="col-9">
+                    {{pelicula.original_title}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    Lanzamiento
+                </div>
+                <div class="col-9">
+                    {{pelicula.release_date}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    Votos
+                </div>
+                <div class="col">
+                    <span class="badge badge-success">{{pelicula.vote_average}}</span>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary mt-4" (click)="volver()">Volver</button>
+    </div>
+</div>
+
+
+
+<!-- {{movie_id}} -->

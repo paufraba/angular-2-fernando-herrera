@@ -1,0 +1,64 @@
+<h1>
+    Películas en cartelera</h1>
+<div class="container animated fadeIn" *ngIf="cartelera">
+    <div class="row">
+        <div class="col" *ngFor="let peli of cartelera">
+            <div class="card" style="width: 250px;">
+                <div class="card-header">
+                    {{peli.title}}
+                </div>
+                <img class="card-img-top" [src]="_pelis.img_base_url + 'w342/' + peli.poster_path" alt="{{peli.title}}">
+                <div class="card-body">
+                    <p>
+                        <span class="badge badge-success">{{peli.vote_average}}</span>
+                        <small>{{peli.vote_count}} votos</small>
+                    </p>
+                    <a [routerLink]="['/pelicula', peli.id]" class="btn btn-primary btn-block">Detalle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h1 class="mt-2">Películas populares</h1>
+<div class="container animated fadeIn" *ngIf="populares">
+    <div class="row">
+        <div class="col" *ngFor="let peli of populares; let i = index">
+            <div class="card" style="width: 250px;">
+                <div class="card-header">
+                    {{peli.title}}
+                </div>
+                <img class="card-img-top" [src]="_pelis.img_base_url + 'w342/' + peli.poster_path" alt="{{peli.title}}">
+                <div class="card-body">
+                    <p>
+                        <span class="badge badge-success">{{peli.vote_average}}</span>
+                        <small>{{peli.vote_count}} votos. Popularidad: {{peli.popularity}}</small>
+                    </p>
+
+                    <a [routerLink]="['/pelicula', peli.id]" class="btn btn-primary btn-block">Detalle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Películas para niños</h2>
+<div class="container animated fadeIn" *ngIf="popularesNinos">
+    <div class="row">
+        <div class="col" *ngFor="let peli of popularesNinos">
+            <div class="card" style="width: 250px;">
+                <div class="card-header">
+                    {{peli.title}}
+                </div>
+                <img class="card-img-top" [src]="_pelis.img_base_url + 'w342/' + peli.poster_path" alt="{{peli.title}}">
+                <div class="card-body">
+                    <p>
+                        <span class="badge badge-success">{{peli.vote_average}}</span>
+                        <small>{{peli.vote_count}} votos</small>
+                    </p>
+                    <a [routerLink]="['/pelicula', peli.id]" class="btn btn-primary btn-block">Detalle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

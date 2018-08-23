@@ -1,0 +1,41 @@
+<h1>Resultados de la búsqueda <small>"{{textoBusqueda}}"</small></h1>
+<nav aria-label="Page navigation example" *ngIf="paginador.total != 0">
+    <ul class="pagination">
+        <li class="page-item" [ngClass]="{disabled:paginador.actual == 1}">
+            <a class="page-link" [routerLink]="['/buscar', textoBusqueda, paginador.actual - 1]" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        <li class="page-item" *ngFor="let num of paginador.numeros" [ngClass]="{active:paginador.actual == num}">
+            <a class="page-link" [routerLink]="['/buscar', textoBusqueda, num]">{{num}}</a>
+        </li>
+
+        <li class="page-item" [ngClass]="{disabled:paginador.actual == paginador.total}">
+            <a class="page-link" [routerLink]="['/buscar', textoBusqueda, +paginador.actual + 1]" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container animated fadeIn" *ngIf="peliculas">
+    <div class="row">
+        <div class="col" *ngFor="let peli of peliculas">
+            <div class="card" style="width: 250px;">
+                <div class="card-header">
+                    {{peli.title}}
+                </div>
+                <img class="card-img-top" [src]="_pelis.img_base_url + 'w342/' + peli.poster_path" alt="{{peli.title}}" *ngIf="peli.poster_path">
+                <div class="card-body">
+                    <p>
+                        <span class="badge badge-success">{{peli.vote_average}}</span>
+                        <small>{{peli.vote_count}} votos</small>
+                    </p>
+                    <a [routerLink]="['/pelicula', peli.id]" class="btn btn-primary btn-block">Detalle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
