@@ -1,0 +1,19 @@
+<div class="container animated fadeIn" *ngIf="peliculas">
+    <div class="row">
+        <div class="col" *ngFor="let peli of peliculas">
+            <div class="card" style="width: 250px;">
+                <div class="card-header">
+                    {{peli.title}}
+                </div>
+                <img class="card-img-top" [src]="peli | peliculaImagen" alt="{{peli.title}}">
+                <div class="card-body">
+                    <p>
+                        <span class="badge badge-success">{{peli.vote_average}}</span>
+                        <small>{{peli.vote_count}} votos</small>
+                    </p>
+                    <a [routerLink]="['/pelicula', peli.id]" class="btn btn-primary btn-block">Detalle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

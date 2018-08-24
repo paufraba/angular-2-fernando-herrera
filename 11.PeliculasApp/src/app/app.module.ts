@@ -14,11 +14,14 @@ import { FeatureRoutingModule } from './app.routes';
 // Componentes
 import { HomeComponent } from './components/home/home.component';
 import { BuscarComponent } from './components/buscar/buscar.component';
+import { PeliculaComponent } from './components/pelicula/pelicula.component';
 
 // Servicios
 import { PeliculasService } from './services/peliculas.service';
-import { PeliculaComponent } from './components/pelicula/pelicula.component';
 
+//Pipes
+import { PeliculaImagenPipe } from './pipes/pelicula-imagen.pipe';
+import { GaleriaComponent } from './components/home/galeria.component';
 
 
 @NgModule({
@@ -28,7 +31,9 @@ import { PeliculaComponent } from './components/pelicula/pelicula.component';
         MainComponent,
         HomeComponent,
         BuscarComponent,
-        PeliculaComponent
+        PeliculaComponent,
+        PeliculaImagenPipe,
+        GaleriaComponent
     ],
     imports: [
         BrowserModule,

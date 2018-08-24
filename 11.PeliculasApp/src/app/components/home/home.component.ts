@@ -21,9 +21,9 @@ export class HomeComponent {
         });
 
         this._pelis.getCartelera().subscribe(data => {
-            console.log(data);
+            // console.log(data);
             this.cartelera = data.results.slice(0, 9);
-            console.log(this.cartelera);
+            // console.log(this.cartelera);
         });
 
         this._pelis.getPopularesNinos().subscribe(data => {
