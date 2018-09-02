@@ -5,7 +5,7 @@
                 <div class="card-header">
                     {{peli.title}}
                 </div>
-                <img class="card-img-top" [src]="peli | peliculaImagen" alt="{{peli.title}}">
+                <img class="card-img-top" [src]="peli | peliculaImagen:true" alt="{{peli.title}}">
                 <div class="card-body">
                     <p>
                         <span class="badge badge-success">{{peli.vote_average}}</span>

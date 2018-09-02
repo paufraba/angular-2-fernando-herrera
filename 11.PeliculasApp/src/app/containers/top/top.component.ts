@@ -10,6 +10,9 @@ export class TopComponent {
     constructor(private router: Router) { }
 
     buscarPelicula(texto: string) {
+        if (texto.length == 0) {
+            return;
+        }
         this.router.navigate(['/buscar', texto]);
     }
 

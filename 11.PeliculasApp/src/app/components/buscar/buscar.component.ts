@@ -30,19 +30,21 @@ export class BuscarComponent {
                 this.paginador.actual = 1;
             }
 
-            this._pelis.buscarPelicula(this.textoBusqueda, this.paginador.actual).subscribe(
-                data => {
-                    console.log(data);
-                    this.peliculas = data.results;
-                    // console.log(this.peliculas);
+            if (this.textoBusqueda !== '') {
+                this._pelis.buscarPelicula(this.textoBusqueda, this.paginador.actual).subscribe(
+                    data => {
+                        console.log(data);
+                        this.peliculas = data.results;
+                        // console.log(this.peliculas);
 
-                    this.paginador.total = data.total_pages;
-                    this.paginador.numeros = Array.from(
-                        Array((this.paginador.total + 1) - this.paginador.inicial).keys()).map(
-                        i => this.paginador.inicial + i);
-                    console.log(this.paginador);
-                }
-            );
+                        this.paginador.total = data.total_pages;
+                        this.paginador.numeros = Array.from(
+                            Array((this.paginador.total + 1) - this.paginador.inicial).keys()).map(
+                            i => this.paginador.inicial + i);
+                        console.log(this.paginador);
+                    }
+                );
+            }
         });
     }
 }

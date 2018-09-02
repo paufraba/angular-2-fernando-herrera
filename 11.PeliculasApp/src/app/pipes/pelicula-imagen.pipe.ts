@@ -5,9 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PeliculaImagenPipe implements PipeTransform {
 
-    transform(pelicula: any): any {
+    transform(pelicula: any, backdrop: boolean = false): any {
 
         const img_base_url = 'https://image.tmdb.org/t/p/w342/';
+
+        if (backdrop) {
+            return img_base_url + pelicula.backdrop_path;
+        }
 
         if (pelicula.poster_path) {
             return img_base_url + pelicula.poster_path;
