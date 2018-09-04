@@ -6,17 +6,24 @@ import { AppComponent } from './app.component';
 
 import { MaterialModule } from './material.module';
 import { MapaComponent } from './components/mapa/mapa.component';
+import { EditarMapaComponent } from './components/mapa/editar-mapa.component';
 import { AgmCoreModule } from '@agm/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
+    entryComponents: [
+        EditarMapaComponent
+    ],
     declarations: [
         AppComponent,
-        MapaComponent
+        MapaComponent,
+        EditarMapaComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         MaterialModule,
+        ReactiveFormsModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyCmCVvIsfbv7DX7_4C1jDFONDcHBXDEphw'
         })
