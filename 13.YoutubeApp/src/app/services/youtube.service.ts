@@ -16,13 +16,17 @@ export class YoutubeService {
     }
 
     getVideos() {
-        const url = `${this.youtubeURL}/playlists`;
-        let params = new URLSearchParams;
+        const url = `${this.youtubeURL}/playlistItems`;
+        const params = new URLSearchParams;
 
         params.set('part', 'snippet');
-        params.set('channelId', 'UC_x5XG1OV2P6uZZ5FSM9Ttw');
+        params.set('playlistId', 'PL0cWlOyqP6_N0dRloyZxWTTj0qpdi0cg4');
         params.set('maxResults', '10');
         params.set('key', this.apiKey);
+
+        if (this.nextPageToken) {
+            params.set('pageToken', this.nextPageToken);
+        }
 
         return this.http.get(url, { search: params })
             .map(res => {
