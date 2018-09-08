@@ -19,4 +19,8 @@ export class CargaComponent implements OnInit {
     cargarImagenes() {
         this._ci.cargarImagenesFirebase(this.archivos);
     }
+
+    limpiarArchivos() {
+        this.archivos = [];
+    }
 }

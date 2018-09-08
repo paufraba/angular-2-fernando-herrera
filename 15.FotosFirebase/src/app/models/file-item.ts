@@ -3,12 +3,12 @@ export class FileItem {
     public nombreArchivo: string;
     public url: string;
     public estaSubiendo: boolean;
-    public progeso: number;
+    public progreso: number;
 
     constructor(archivo: File) {
         this.archivo = archivo;
         this.nombreArchivo = archivo.name;
         this.estaSubiendo = false;
-        this.progeso = 0;
+        this.progreso = 0;
     }
 }

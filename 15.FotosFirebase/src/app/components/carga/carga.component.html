@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-4">
         <h3>Seleccione archivos para subir</h3>
-        <div class="well drop-zone" appNgDropFiles (mouseSobre)="estaSobreImagen = $event" [ngClass]="{'file-over': estaSobreImagen}">
+        <div appNgDropFiles [archivos]="archivos" class="well drop-zone" (mouseSobre)="estaSobreImagen = $event" [ngClass]="{'file-over': estaSobreImagen}">
             <h4>Arrastre los archivos</h4>
             <img src="assets/img/drop-images.png" alt="Drop Image">
         </div>
@@ -9,7 +9,7 @@
     <div class="col-md-8">
         <h4>Carga a Firebase</h4>
         <button (click)="cargarImagenes()" [disabled]="archivos.length === 0" type="button" class="btn btn-success">Cargar</button>
-        <button type="button" class="btn btn-danger">Limpiar</button>
+        <button (click)="limpiarArchivos()" type="button" class="btn btn-danger">Limpiar</button>
 
         <table class="table">
             <thead class="thead-dark">
@@ -20,20 +20,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row">Abc</td>
-                    <td>0.5 MB</td>
+                <tr *ngFor="let archivo of archivos">
+                    <td scope="row" [ngClass]="{'text-green': archivo.progreso >= 100}">{{ archivo.nombreArchivo}}</td>
+                    <td>{{ archivo.archivo.size / 1024 | number: '.2-2'}} KB</td>
                     <td>
                         <div class="progress">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" style="width: 25%;"></div>
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" [ngStyle]="{'width': archivo.progreso + '%'}">
+                                {{archivo.progreso | number: '.2-2'}}%
+                            </div>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td scope="row"></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+
             </tbody>
         </table>
 
