@@ -1,0 +1,14 @@
+<h2>Donuts</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <div style="display: block">
+            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+                (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <button (click)="random()" type="button" class="btn btn-primary btn-lg btn-block">Actualizar</button>
+    </div>
+</div>
