@@ -8,20 +8,20 @@ import { HeroesService, Heroe } from '..\\..\\services\\heroes.service';
 })
 export class SearchComponent implements OnInit {
 
-    heroes:Heroe[] = [];
-    texto:string;
+    heroes: Heroe[] = [];
+    texto: string;
 
     constructor(private activatedRoute: ActivatedRoute,
-        private _heroesService:HeroesService) {
-        }
-
-        ngOnInit() {
-            this.activatedRoute.params.subscribe(params=>{
-                // console.log(params['text'])
-                this.texto = params['text'];
-                this.heroes = this._heroesService.buscarHeroes(params['text']);
-                console.log(this.heroes);
-            })
-        }
-
+        private _heroesService: HeroesService) {
     }
+
+    ngOnInit() {
+        this.activatedRoute.params.subscribe(params => {
+            // console.log(params['text'])
+            this.texto = params['text'];
+            this.heroes = this._heroesService.buscarHeroes(params['text']);
+            console.log(this.heroes);
+        });
+    }
+
+}

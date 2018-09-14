@@ -2,5 +2,5 @@
 <hr>
 
 <div class="card-columns animated fadeIn">
-    <app-heroe-tarjeta [heroe]="heroe" *ngFor="let heroe of heroes"></app-heroe-tarjeta>
+    <app-heroe-tarjeta (onHeroeSeleccionado)="verHeroe($event)" [heroe]="heroe" *ngFor="let heroe of heroes"></app-heroe-tarjeta>
 </div>
