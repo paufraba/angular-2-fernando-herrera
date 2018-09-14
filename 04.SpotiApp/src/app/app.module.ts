@@ -2,9 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+
 import { APP_ROUTING } from './app.routes';
 
-//servicios
+// Servicios
 import { SpotifyService } from './services/spotify.service';
 
 import { AppComponent } from './app.component';
@@ -29,6 +31,7 @@ import { ArtistaComponent } from './components/artista/artista.component';
         BrowserModule,
         APP_ROUTING,
         HttpModule,
+        HttpClientModule,
         FormsModule
     ],
     providers: [

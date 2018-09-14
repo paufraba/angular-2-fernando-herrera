@@ -1,64 +1,77 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const TOKEN = 'BQCRxbKIj0gdZ4SPRNSuMQVi2RiobMM6X5JWblmFWGSYb34RS-TP3w1M_AywNUEP0lygdHZ86yDsgxl4EPEnaA';
+const TOKEN = 'BQAjyh9R9xrVyzX3A4IgQsQqNl8Zt42YkvbMFnJUUXwzPbuqUfhK0IEIPAuyPonT0m0rXIq7NAIVxeA666o';
 
 @Injectable()
 export class SpotifyService {
 
-    artistas:any[] = [];
+    artistas: any[] = [];
 
-    urlBusqueda:string = "https://api.spotify.com/v1/search"
-    urlArtista:string = "https://api.spotify.com/v1/artists"
+    urlBusqueda = 'https://api.spotify.com/v1/search';
+    urlArtista = 'https://api.spotify.com/v1/artists';
 
-    constructor(private http:Http) { }
+    constructor(
+        private http: Http,
+        private httpClient: HttpClient) { }
 
-    getArtistas(texto:string){
-        let headers = new Headers();
+    getNovedades() {
+        const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + TOKEN
+        });
+        return this.httpClient.get('https://api.spotify.com/v1/browse/new-releases', { headers });
+    }
+
+    getArtistas(texto: string) {
+        const headers = new Headers();
 
         headers.append('Authorization', 'Bearer ' + TOKEN);
-        let query= `?q=${ texto }&type=artist`;
-        let url = this.urlBusqueda + query;
+        const query = `?q=${texto}&type=artist`;
+        const url = this.urlBusqueda + query;
 
         return this.http.get(url, { headers })
-            .map( res => {
+            .map(res => {
                 // console.log(res.json().artists);
 
                 this.artistas = res.json().artists.items;
                 console.log(this.artistas);
 
                 return res.json().artists.items;
-            })
+            });
     }
 
-    getArtista(id:string){
-        let headers = new Headers();
+    getArtista(id: string) {
+        const headers = new Headers();
 
         headers.append('Authorization', 'Bearer ' + TOKEN);
-        let query= `/${ id }`;
-        let url = this.urlArtista + query;
+        const query = `/${id}`;
+        const url = this.urlArtista + query;
 
         return this.http.get(url, { headers })
-            .map( res => {
+            .map(res => {
                 console.log(res.json());
 
                 return res.json();
-            })
+            });
     }
-    getTop(id:string){
-        let headers = new Headers();
+
+    getTop(id: string) {
+        const headers = new Headers();
 
         headers.append('Authorization', 'Bearer ' + TOKEN);
-        let query= `/${ id }/top-tracks?country=ES`;
-        let url = this.urlArtista + query;
+        const query = `/${id}/top-tracks?country=ES`;
+        const url = this.urlArtista + query;
 
         return this.http.get(url, { headers })
-            .map( res => {
+            .map(res => {
                 console.log(res.json().tracks);
 
                 return res.json().tracks;
-            })
+            });
     }
+
+
 
 }
