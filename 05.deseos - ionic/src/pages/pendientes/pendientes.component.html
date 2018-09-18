@@ -1,42 +1,27 @@
-<ion-header >
+<ion-header>
     <ion-navbar color="primary">
-        <ion-title>Lista de pendientes</ion-title>
+      <ion-title>Pendientes</ion-title>
     </ion-navbar>
 </ion-header>
+  
+  <ion-content>
 
-<ion-content padding>
-    <ion-grid *ngIf="(_listaTareasService.listas | pendientes).length === 0">
-        <ion-row>
-            <ion-col class="text-center caja-vacia">
-                <ion-icon class="icono-grande" ios="ios-sunny" md="md-sunny"></ion-icon>
-                <p class="texto-grande">No hay ninguna lista</p>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
 
-    <ion-card *ngFor="let lista of _listaTareasService.listas | pendientes; let i = index">
-        <ion-item color="primary" (click)="verDetalle(lista, i)">
-            <h2>{{ lista.nombre }}</h2>
-            <ion-note item-right>{{ lista.items.length}} items</ion-note>
-        </ion-item>
+    <img src="../../assets/imgs/pendientes.jpg">
+    
 
-        <ion-list *ngIf="lista.items">
-            <ion-item *ngFor="let item of lista.items | slice:0:2" (click)="verDetalle(lista, i)">
-                <ion-icon ios="ios-square-outline" md="md-square-outline" *ngIf="!item.completado"></ion-icon>
-                <ion-icon ios="ios-checkbox-outline" md="md-checkbox-outline" *ngIf="item.completado"></ion-icon>
-                {{ item.nombre }}
-            </ion-item>
+    <app-listas></app-listas>
 
-            <ion-item class="text-center" *ngIf="lista.items.length > 2">
-                <ion-icon color="primary" ios="ios-arrow-down" md="md-arrow-down"></ion-icon>
-            </ion-item>
-        </ion-list>
-    </ion-card>
 
-    <ion-fab right bottom>
-        <button ion-fab color="primary" (click)="agregarTarea()">
-            <ion-icon name="add"></ion-icon>
+    <ion-fab bottom right>
+
+        <button (click)="agregarLista()" ion-fab>
+          <ion-icon name="add"></ion-icon>
         </button>
 
     </ion-fab>
-</ion-content>
+    
+
+
+  </ion-content>
+  

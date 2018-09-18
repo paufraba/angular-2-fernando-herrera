@@ -1,61 +1,80 @@
-import { Component, OnInit } from '@angular/core';
-import { Lista, ListaItem } from '../../app/classes';
-import { AlertController, NavController } from 'ionic-angular';
-import { ListaTareasService } from '../../app/services/lista-tareas.service';
+
+import { Component } from '@angular/core';
+import { DeseosService } from '../../services/deseos.service';
+import { Lista, ListaItem } from '../../models';
+import { NavParams } from 'ionic-angular';
+
+
 
 @Component({
-    selector: 'app-agregar',
-    templateUrl: 'agregar.component.html',
+    selector: 'page-agregar',
+    templateUrl: 'agregar.component.html'
 })
-export class AgregarComponent implements OnInit {
+export class AgregarPage {
 
-    nombreLista: string = "";
-    nombreItem: string = "";
-    items: ListaItem[] = [];
+    lista: Lista;
+    nombreItem: string = '';
 
-    constructor(public alertCtrl: AlertController,
-        public _listaTareasService:ListaTareasService,
-        public navController:NavController) {
+    constructor( public deseosService: DeseosService,
+                 private navParams: NavParams) {
+       
+        const titulo = this.navParams.get('titulo');
+
+        if ( this.navParams.get('lista') ) {
+            this.lista = this.navParams.get('lista');
+        } else {
+            this.lista = new Lista( titulo );
+            this.deseosService.agregarLista( this.lista );
+        }
+
+
+
     }
 
-    ngOnInit() {}
 
     agregarItem() {
-        if (this.nombreItem.length == 0) {
+
+        if ( this.nombreItem.length === 0) {
             return;
         }
 
-        let item = new ListaItem();
-        item.nombre = this.nombreItem;
+        const nuevoItem = new ListaItem(this.nombreItem);
+        this.lista.items.push( nuevoItem );
 
-        this.items.push(item);
-        this.nombreItem = "";
+        this.deseosService.guardarStorage();
+
+        this.nombreItem = '';
+        
     }
 
-    borrarItem(idx: number) {
-        this.items.splice(idx, 1);
-    }
+    actualizarTarea(item: ListaItem ){
 
-    guardarLista() {
-        if (this.nombreLista.length == 0) {
+        item.completado = !item.completado;
 
-            let alert = this.alertCtrl.create({
-                title: 'Nombre lista',
-                subTitle: 'Es necesario dar un nombre a la lista',
-                buttons: ['OK']
-            });
-            alert.present();
 
-            return;
+        const pendientes = this.lista.items.filter( itemData => {
+            return !itemData.completado;
+        }).length;
+
+        if ( pendientes === 0 ) {
+            this.lista.terminada = true;
+            this.lista.terminadaEn = new Date();
+        } else {
+            this.lista.terminada = false;
+            this.lista.terminadaEn = null;
         }
 
-        let lista = new Lista(this.nombreLista);
-        lista.items = this.items;
+        this.deseosService.guardarStorage();
 
-        // this._listaTareasService.listas.push(lista);
-        this._listaTareasService.agregarLista(lista);
-        this.navController.pop();
+    }
+
+    borrar( idx: number ) {
+
+        this.lista.items.splice( idx, 1 );
+        this.deseosService.guardarStorage();
+
     }
 
 
 }
+

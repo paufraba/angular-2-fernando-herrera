@@ -1,24 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { ListaTareasService } from '../../app/services/lista-tareas.service';
-import { NavController } from 'ionic-angular';
-import { AgregarComponent } from '../agregar/agregar.component';
-import { DetalleComponent } from '../detalle/detalle.component';
+
+import { Component } from '@angular/core';
+import { DeseosService } from '../../services/deseos.service';
+import { Lista } from '../../models';
+import { NavController, AlertController } from 'ionic-angular';
+import { AgregarPage } from '../agregar/agregar.component';
+
 
 @Component({
-    selector: 'app-pendientes',
-    templateUrl: 'pendientes.component.html',
+    selector: 'page-pendientes',
+    templateUrl: 'pendientes.component.html'
 })
-export class PendientesComponent implements OnInit {
-    constructor(private _listaTareasService:ListaTareasService, private navController: NavController) {
+export class PendientesPage {
+
+    constructor( public deseosService: DeseosService,
+                 private navCtrl: NavController,
+                 private alertCtrl: AlertController) {
+
     }
 
-    ngOnInit() {}
+    
 
-    agregarTarea() {
-        this.navController.push(AgregarComponent);
+    agregarLista() {
+
+        
+
+        const alerta = this.alertCtrl.create({
+            title: 'Nueva lista',
+            message: 'Nombre de la nueva lista que desea',
+            inputs: [{
+                name: 'titulo',
+                placeholder: 'Nombre de la lista'
+            }],
+            buttons: [{
+                text: 'Cancelar'
+            },{
+                text: 'Agregar',
+                handler: data => {
+                    
+                    if( data.titulo.length === 0 ){
+                        return;
+                    }
+
+                    this.navCtrl.push( AgregarPage, {
+                        titulo: data.titulo
+                    });
+                }
+            }]
+        });
+
+        alerta.present();
+
     }
 
-    verDetalle(lista, i) {
-        this.navController.push(DetalleComponent, {lista, i});
-    }
 }
+

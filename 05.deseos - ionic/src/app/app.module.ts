@@ -2,32 +2,33 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+
 import { TabsPage } from '../pages/tabs/tabs';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-//Servicios
-import { ListaTareasService } from './services/lista-tareas.service';
+// Componentes
+import { PendientesPage } from '../pages/pendientes/pendientes.component';
+import { TerminadosPage } from '../pages/terminados/terminados.component';
+import { AgregarPage } from '../pages/agregar/agregar.component';
+import { ListasComponent } from '../components/listas.component';
 
-//Pipes
-import { PlaceHolderPipe } from './pipes/placeholder.pipe';
-import { PendientesPipe } from './pipes/pendientes.pipes';
+// servicios
+import { DeseosService } from '../services/deseos.service';
 
-import { PendientesComponent } from '../pages/pendientes/pendientes.component';
-import { TerminadosComponent } from '../pages/terminados/terminados.component';
-import { AgregarComponent } from '../pages/agregar/agregar.component';
-import { DetalleComponent } from '../pages/detalle/detalle.component';
+// Pipes
+import { FiltroCompletadoPipe } from '../pipes/filtro-completado/filtro-completado';
 
 @NgModule({
     declarations: [
         MyApp,
         TabsPage,
-        PendientesComponent,
-        TerminadosComponent,
-        AgregarComponent,
-        PlaceHolderPipe,
-        DetalleComponent,
-        PendientesPipe
+        PendientesPage,
+        TerminadosPage,
+        AgregarPage,
+        FiltroCompletadoPipe,
+        ListasComponent
     ],
     imports: [
         BrowserModule,
@@ -37,16 +38,15 @@ import { DetalleComponent } from '../pages/detalle/detalle.component';
     entryComponents: [
         MyApp,
         TabsPage,
-        PendientesComponent,
-        TerminadosComponent,
-        AgregarComponent,
-        DetalleComponent
+        PendientesPage,
+        TerminadosPage,
+        AgregarPage
     ],
     providers: [
         StatusBar,
         SplashScreen,
-        {provide: ErrorHandler, useClass: IonicErrorHandler},
-        ListaTareasService
+        DeseosService,
+        { provide: ErrorHandler, useClass: IonicErrorHandler }
     ]
 })
-export class AppModule {}
+export class AppModule { }
