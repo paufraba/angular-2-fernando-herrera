@@ -8,15 +8,15 @@ import { SpotifyService } from '../../services/spotify.service';
 })
 export class ArtistaComponent implements OnInit {
 
-    artista:any;
-    topTracks:any[];
+    artista: any;
+    topTracks: any[];
 
-    constructor(private activatedRoute:ActivatedRoute,
-        private _spotifyService:SpotifyService ) { }
+    constructor(private activatedRoute: ActivatedRoute,
+        private _spotifyService: SpotifyService) { }
 
-        ngOnInit() {
-            this.activatedRoute.params
-            .map (parametros => parametros['id'])
+    ngOnInit() {
+        this.activatedRoute.params
+            .map(parametros => parametros['id'])
             .subscribe(id => {
                 // console.log(id);
                 this._spotifyService.getArtista(id)
@@ -25,5 +25,5 @@ export class ArtistaComponent implements OnInit {
                 this._spotifyService.getTop(id)
                     .subscribe(data => this.topTracks = data);
             });
-        }
     }
+}

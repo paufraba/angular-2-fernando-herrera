@@ -3,75 +3,57 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-const TOKEN = 'BQAjyh9R9xrVyzX3A4IgQsQqNl8Zt42YkvbMFnJUUXwzPbuqUfhK0IEIPAuyPonT0m0rXIq7NAIVxeA666o';
+
+// El token se genera con Postman
+const TOKEN = 'QCVp7Wsh4A8VFru3qfj4T1vXBw2U6BnMpcft9Uah-kaoiYby8UTPX5b50R4zfIt9yQxbOtCoAfBzj5nVOg';
 
 @Injectable()
 export class SpotifyService {
 
     artistas: any[] = [];
 
-    urlBusqueda = 'https://api.spotify.com/v1/search';
-    urlArtista = 'https://api.spotify.com/v1/artists';
+    urlArtista = 'https://api.spotify.com/v1/';
 
     constructor(
         private http: Http,
         private httpClient: HttpClient) { }
 
-    getNovedades() {
+    callSpotifyAPI(query: string) {
+        const url = `https://api.spotify.com/v1/${query}`;
         const headers = new HttpHeaders({
             'Authorization': 'Bearer ' + TOKEN
         });
-        return this.httpClient.get('https://api.spotify.com/v1/browse/new-releases', { headers });
+
+        return this.httpClient.get(url, { headers });
+    }
+
+    getNovedades() {
+        return this.callSpotifyAPI('browse/new-releases')
+            .map(data => {
+                return data['albums'].items;
+            });
     }
 
     getArtistas(texto: string) {
-        const headers = new Headers();
-
-        headers.append('Authorization', 'Bearer ' + TOKEN);
-        const query = `?q=${texto}&type=artist`;
-        const url = this.urlBusqueda + query;
-
-        return this.http.get(url, { headers })
+        return this.callSpotifyAPI(`search?q=${texto}&type=artist`)
             .map(res => {
-                // console.log(res.json().artists);
-
-                this.artistas = res.json().artists.items;
+                this.artistas = res['artists'].items;
                 console.log(this.artistas);
 
-                return res.json().artists.items;
+                return this.artistas;
             });
     }
 
     getArtista(id: string) {
-        const headers = new Headers();
-
-        headers.append('Authorization', 'Bearer ' + TOKEN);
-        const query = `/${id}`;
-        const url = this.urlArtista + query;
-
-        return this.http.get(url, { headers })
-            .map(res => {
-                console.log(res.json());
-
-                return res.json();
-            });
+        return this.callSpotifyAPI(`artists/${id}`);
     }
 
     getTop(id: string) {
-        const headers = new Headers();
-
-        headers.append('Authorization', 'Bearer ' + TOKEN);
-        const query = `/${id}/top-tracks?country=ES`;
-        const url = this.urlArtista + query;
-
-        return this.http.get(url, { headers })
+        return this.callSpotifyAPI(`artists/${id}/top-tracks?country=ES`)
             .map(res => {
-                console.log(res.json().tracks);
+                console.log(res['tracks']);
 
-                return res.json().tracks;
+                return res['tracks'];
             });
     }
-
-
-
 }

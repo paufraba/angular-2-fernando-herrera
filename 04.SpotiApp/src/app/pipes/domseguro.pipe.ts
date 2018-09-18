@@ -6,11 +6,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class DomseguroPipe implements PipeTransform {
 
-    constructor (private domSanitizer:DomSanitizer){
+    constructor(private domSanitizer: DomSanitizer) {
 
-    };
+    }
 
-    transform(value: string, url:string): SafeResourceUrl {
+    transform(value: string): SafeResourceUrl {
+        const url = 'https://open.spotify.com/embed?uri=';
         return this.domSanitizer.bypassSecurityTrustResourceUrl(url + value);
     }
 

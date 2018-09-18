@@ -40,7 +40,7 @@
     </a>
 </div>
 
-<div class="container top-30">
+<!-- <div class="container top-30">
     <div class="row">
         <div class="col-md-4 text-center">
             <img src="assets/img/artist.png" alt="">
@@ -58,21 +58,16 @@
             Lorem ipsum dolor sit amet.
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="card-columns">
-    <div class="card">
-        <img class="card-img-top" src="holder.js/100x180/" alt="">
-        <div class="card-body">
-            <h4 class="card-title">Title</h4>
-            <p class="card-text">Text</p>
-        </div>
+<div class="container">
+    <h1>Novedades</h1>
+    <app-loading *ngIf="loading"></app-loading>
+    <div *ngIf="error" class="alert alert-danger animated fadeIn" role="alert">
+        <h3>Error</h3>
+        {{ mensajeError }}
     </div>
-    <div class="card">
-        <img class="card-img-top" src="holder.js/100x180/" alt="">
-        <div class="card-body">
-            <h4 class="card-title">Title</h4>
-            <p class="card-text">Text</p>
-        </div>
+    <div class="mt-4">
+        <app-tarjetas [items]="novedades"></app-tarjetas>
     </div>
 </div>
